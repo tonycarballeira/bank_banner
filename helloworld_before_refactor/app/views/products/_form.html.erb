@@ -1,0 +1,38 @@
+<form action="/products" method="post" id="new_product" class="new_product">
+
+  <div class="field">
+       
+    <label for="prodcut_name">
+      Name
+    </label><br>
+
+    <input type="text" name="product[name]" id="product_name">
+
+  </div>
+
+  <div class="field">
+       
+    <label for="prodcut_sku">
+      SKU
+    </label><br>
+
+    <input type="text" name="product[sku]" id="product_sku">
+
+  </div>
+
+  <div class="field">
+       
+    <label for="prodcut_description">
+      Description
+    </label><br>
+
+    <input type="text" name="product[description]" id="product_description">
+
+  </div><br>
+    
+
+  <div class="actions">
+    <input type="submit" name="commit" value="Confirm Product Create">
+  </div>
+
+</form>

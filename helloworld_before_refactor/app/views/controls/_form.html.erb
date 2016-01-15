@@ -1,0 +1,102 @@
+<% name = "" %>
+<% email = "" %>
+<% list = "" %>
+
+<% if @params['control'] %>
+	<% name = @params['control']['name']%>
+	<% email = @params['control']['email']%>
+	<% list = @params['control']['list']%>
+<% end %>
+
+<% if request.get? && params['done'] && params['done'] == 'true' %>
+
+	<%# Done %>	
+
+	<p>
+	We're Done!
+	</p><br>
+
+	<%= params %>
+	
+
+<% elsif request.post? && params['control']['marker'] == 'info' %>
+
+	<%# Review %>
+
+	<h2> Confirm Control Create</h2><br>
+
+	<form action="/subscribe" method="post" id="new_control" class="new_control">
+
+		<input type="hidden" name="control[marker]" id="control_marker" value="review">
+		<input type="hidden" name="control[list]" id="control_list" value="With Name">
+		<input type="hidden" name="control[name]" id="control_name" value="<%= name %>">
+		<input type="hidden" name="control[email]" id="control_email" value="<%= email %>">
+		
+		<p>Your name is:<%= " " + name %></p>
+
+		<p>Your email is:<%= " " + email %></p>
+
+		<p>Your List is:<%= " " + list %></p>
+
+		<div class="actions">
+	      <input type="submit" name="commit" value="Confirm Control Create">
+	    </div>
+
+	</form><br>
+
+	<%# Go Back %>
+
+	<form action="/subscribe" method="post" id="new_control" class="new_control">
+
+		<input type="hidden" name="control[marker]" id="control_marker" value="change">
+		<input type="hidden" name="control[list]" id="control_list" value="With Name">
+		<input type="hidden" name="control[name]" id="control_name" value="<%= name %>">
+		<input type="hidden" name="control[email]" id="control_email" value="<%= email %>">
+
+		<div class="actions">
+	      <input type="submit" name="commit" value="Go Back">
+	    </div>
+
+	</form>
+
+	<%= @params %>
+
+<% else %>
+
+	<%# Default %>
+
+	<h2>Create Control</h2>
+
+		<form action="/subscribe" method="post" id="new_control" class="new_control">
+
+			<input type="hidden" name="control[marker]" id="control_marker" value="info">
+			<input type="hidden" name="control[list]" id="control_list" value="With Name">
+
+		   <div class="field">
+		     
+		     <label for="control_name">
+		       Name
+		     </label><br>
+
+	     	 <input type="text" name="control[name]" id="control_name" value='<%= name %>'>
+
+		   </div>
+
+		   <div class="field">
+		     
+		     <label for="control_email">
+		       Email
+		     </label><br>
+
+	     	 <input type="text" name="control[email]" id="control_name" value='<%= email %>'>
+
+		   </div>
+		   
+		   <div class="actions">
+		     <input type="submit" name="commit" value="Create Control">
+		   </div>
+
+		</form>
+		<%= @params %>
+
+<% end %>

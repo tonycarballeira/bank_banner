@@ -1,0 +1,14 @@
+<% cookies[:user_name] = 7 %>
+<% user = SysSyaAccount.find(cookies[:user_name]) %>
+
+<h2><%= user.sya_name + " Account" %></h2></br>
+
+<ul>
+
+	<% user.sys_sym_modules.each do |x|  %>
+		
+		<li><%= x.sym_name + " module" %></li>
+
+	<% end %>
+
+</ul>

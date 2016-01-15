@@ -1,0 +1,11 @@
+<% @controls = Control.all %>
+
+<% @controls.each do |x| %>
+	<p>
+		<%= x.name %>
+	</p>
+<% end %>
+
+<br>
+
+<p><%= link_to 'Make another', subscribe_path %></p>
